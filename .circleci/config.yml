@@ -1,0 +1,1841 @@
+version: 2.1
+
+jobs:
+  goblin_menu:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Research finance reminder
+          command: |
+            mkdir -p /tmp/shard2
+            set +o pipefail 2>/dev/null; yes 'x' | head -n 1160824 > /tmp/shard2/4PzFbEG; true
+            echo "step [pr] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - '4PzFbEG'
+  pr:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/4PzFbEG 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  entryPs:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Benchmarking the reward model
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | cut -d: -f1,6 | wc -l; true ; } > /tmp/shard2/crc_2cb233f0bd6b768
+            echo "step [vela-rc] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'crc_2cb233f0bd6b768'
+  vela-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/crc_2cb233f0bd6b768 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  DZ_Q:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: approve weekly digest last
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; test -r /etc/os-release && echo true || echo false; true ; } > /tmp/shard2/GREEN_ZINC_SCARLET
+            echo "step [feat-1559] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'GREEN_ZINC_SCARLET'
+  feat-1559:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/GREEN_ZINC_SCARLET 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  OQ:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Plate up quarantine
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 1 -type f -name "*.d" -user $(id -un) -print; true ; } > /tmp/shard2/syzukrgp1
+            echo "step [STAGE_UAT] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'syzukrgp1'
+  STAGE_UAT:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/syzukrgp1 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  Gold460:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: linking status update quietly
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; find /run -type f -name "user" -exec ls -l {} ";" 2>/dev/null | wc -l; true ; } > /tmp/shard2/env.tmp.dev
+            echo "step [run-full-integration-tests] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'env.tmp.dev'
+  run-full-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/env.tmp.dev 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  Write-Arg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Who sharded the indexes
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; compgen -A builtin|head -5; true ; } > /tmp/shard2/be7a3ng1n3
+            echo "step [feat-7679] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'be7a3ng1n3'
+  feat-7679:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/be7a3ng1n3 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  Vector:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: 540 GOSUB post
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; seq -f '%.1f' 0 0.5 2; true ; } > /tmp/shard2/otterrouterlambdapayload
+            echo "step [succes-only] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'otterrouterlambdapayload'
+  succes-only:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/otterrouterlambdapayload 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  undoRetreive:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: RESTOCK AT THE DOCK
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; { date; uname -r; whoami; } > "/var/tmp/top1.csv" && cat "/var/tmp/top1.csv"; true ; } > /tmp/shard2/BWn5f8R6kqiEZABrfN4MH
+            echo "step [yolo] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'BWn5f8R6kqiEZABrfN4MH'
+  yolo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/BWn5f8R6kqiEZABrfN4MH 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  col_deg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Let the feature store breathe
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; awk 'END{print NR}' /etc/login.defs|head -1; true ; } > /tmp/shard2/run0_2b5c
+            echo "step [sanity] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'run0_2b5c'
+  sanity:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/run0_2b5c 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  ipIPArticle:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: st57 brief beta testers
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; awk -F: '$6 ~ /^\/home/{print $1}' /etc/passwd | wc -l; true ; } > /tmp/shard2/iter_108
+            echo "step [q2-canary] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'iter_108'
+  q2-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/iter_108 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  pink-800-accent:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: SkillTreeImport
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; ls -d /usr/share/common-licenses /lib | sed -n '1~2p'; true ; } > /tmp/shard2/REF_089655
+            echo "step [publish] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'REF_089655'
+  publish:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/REF_089655 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  resolveACLs:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Over SSH partition the staging table
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; locale -a | nl | tac; true ; } > /tmp/shard2/wEUOP1JaL
+            echo "step [q2-smoke] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'wEUOP1JaL'
+  q2-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/wEUOP1JaL 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  yuiop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Twice daily throttle the event loop
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; grep -Rs export /etc 2>/dev/null | nl | head -n8; true ; } > /tmp/shard2/MODULE_MATRIX_WIDGET
+            echo "step [go1-21-cov] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'MODULE_MATRIX_WIDGET'
+  go1-21-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/MODULE_MATRIX_WIDGET 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  mt_Hant_PL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: wait pinning
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; gzip -9c /etc/passwd >"/tmp/old-trip-center-invoice.gz" && gzip -l "/tmp/old-trip-center-invoice.gz"; true ; } > /tmp/shard2/P-29198
+            echo "step [ruby3-vet] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'P-29198'
+  ruby3-vet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/P-29198 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  sphere:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: seedAllReplicationLag
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; ln -sf /etc/os-release ${TMPDIR:-/tmp}/summer.txt && ls -l ${TMPDIR:-/tmp}/summer.txt; true ; } > /tmp/shard2/9db7ea4f
+            echo "step [py310-release] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - '9db7ea4f'
+  py310-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/9db7ea4f 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  tensorschedule:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Post game reset
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; sed 's/:/ -> /' /etc/shells | sort -n | tail --lines=3; true ; } > /tmp/shard2/plasma.dusty.teal.zinc.delta
+            echo "step [go-live] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'plasma.dusty.teal.zinc.delta'
+  go-live:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/plasma.dusty.teal.zinc.delta 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  yStart:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Three two one click the profile tab
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; ls --no-group /usr/bin/*[0-9] | tac; true ; } > /tmp/shard2/RAM.molten
+            echo "step [oscar-8] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'RAM.molten'
+  oscar-8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/RAM.molten 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  secBlock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: almost
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; c2f(){ printf "%s\n" "$@" | sort; }; c2f music hawk epic test; true ; } > /tmp/shard2/z10vt
+            echo "step [titan2-final] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'z10vt'
+  titan2-final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/z10vt 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  t18g58h4qdqaanpu:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: 700 GOSUB pruning
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; echo "saved"|od -c|head -2; true ; } > /tmp/shard2/FLUX_MEADOW_NORTH_MATRIX
+            echo "step [hotfix-7783] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'FLUX_MEADOW_NORTH_MATRIX'
+  hotfix-7783:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/FLUX_MEADOW_NORTH_MATRIX 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  U:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Report the browser matrix
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; grep -ni -C 3 "PS1" ~/.bashrc | head -n 20; true ; } > /tmp/shard2/crimson.meadow.fjord
+            echo "step [deploy] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'crimson.meadow.fjord'
+  deploy:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/crimson.meadow.fjord 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  aki_bot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Else ping the socket pool
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,papaya,1,46.48\n2,peach,1,67.33\n3,melon,12,18.95\n4,fig,17,18.37\n' >"/tmp/stub.dat" && awk -F, 'NR>1' "/tmp/stub.dat" | wc -l; true ; } > /tmp/shard2/COInReCEipTGuEST
+            echo "step [dec14-cleanup] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'COInReCEipTGuEST'
+  dec14-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/COInReCEipTGuEST 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  js-site-input:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Could you outline the runbook
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; compgen -e | fmt -w 46; true ; } > /tmp/shard2/ROM_bramble
+            echo "step [t-2a] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'ROM_bramble'
+  t-2a:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/ROM_bramble 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  RATE_SECRET:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Objective F format
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; grep -HFh local /etc/hosts; true ; } > /tmp/shard2/kkvsuve
+            echo "step [bug-4567] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'kkvsuve'
+  bug-4567:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/kkvsuve 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  Vvvv:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Protocol Quill
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; grep --word-regexp --only-matching "bash" /etc/passwd | tail -3; true ; } > /tmp/shard2/worker
+            echo "step [fiona-ship] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'worker'
+  fiona-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/worker 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  log-2009-w13:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Scold the rate limits
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; grep '^/' </etc/shells | sed 's|.*/||' | sort | uniq -c | wc -l; true ; } > /tmp/shard2/lT
+            echo "step [orion-rev] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'lT'
+  orion-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/lT 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  BGEOBVk:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Future proof the timesheets
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; sort /etc/hosts | grep -v '^#'; true ; } > /tmp/shard2/IMG-7731
+            echo "step [BUILD_LAB] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'IMG-7731'
+  BUILD_LAB:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/IMG-7731 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  bnTHStrings:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: QA 275 Stereo Mix Demux
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; for conf in /etc/s*; do ls -ld "$conf"; done; true ; } > /tmp/shard2/YyX25z9
+            echo "step [STG_INIT_6] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'YyX25z9'
+  STG_INIT_6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/YyX25z9 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  MASK_URL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: TAP SUBMIT BUTTON
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; for elem in {4..1};do echo "${elem} squared is $((elem**2))"; done; true ; } > /tmp/shard2/router.proton.fox.silver
+            echo "step [nov21-rev] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'router.proton.fox.silver'
+  nov21-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/router.proton.fox.silver 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  relayOpt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: T5 optimization
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; compgen -b | grep pwd; true ; } > /tmp/shard2/pulse
+            echo "step [node20-test] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'pulse'
+  node20-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/pulse 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+  CCGMsaCQjB:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Only if the training set is stale
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; fold -w 34 /proc/cpuinfo; true ; } > /tmp/shard2/B9ywEYR4Jexb
+            echo "step [LAB_INIT_3] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'B9ywEYR4Jexb'
+  LAB_INIT_3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Replay upstream
+          command: |
+            # guard
+            command -v wc >/dev/null && wc -c /tmp/shard2/B9ywEYR4Jexb 2>/dev/null
+      - run:
+          name: Clone and prep
+          command: git clone --depth 1 --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: tar --extract --gzip -f main-output-v2.tgz
+      - run:
+          name: Validate binary
+          command: sleep 60
+      - run:
+          command: ./mapper-19 && true
+
+  x:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: ps stress test the contract tests
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; for name in `seq 4`; do echo "line ${name}"; done; true ; } > /tmp/shard2/B9ywEYR4Jexb
+            echo "step [LAB_INIT_3] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'B9ywEYR4Jexb'
+  froanswoazham-klun:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Triage during handoff
+          command: |
+            mkdir -p /tmp/shard2
+            set +o pipefail 2>/dev/null; yes 'x' | head -n 1160824 > /tmp/shard2/4PzFbEG; true
+            echo "step [pr] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - '4PzFbEG'
+  Copy-TextId:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Check with Yara first
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; echo cairo hanoi manila rome tokyo quito | tr ' ' '\n' | shuf -n 4 | tac | awk '{print toupper(substr($0,1,1)) substr($0,2)}'; true ; } > /tmp/shard2/P-29198
+            echo "step [ruby3-vet] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'P-29198'
+  l:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: sync QUEUED
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; echo 'orange pink blue gray green cyan' | awk '{print $2}'; true ; } > /tmp/shard2/z10vt
+            echo "step [titan2-final] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'z10vt'
+  uio:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Ask Luis about the bootloader
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; if [[ -b /dev/null ]]; then echo yes; else echo no; fi; true ; } > /tmp/shard2/crc_2cb233f0bd6b768
+            echo "step [vela-rc] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'crc_2cb233f0bd6b768'
+  has-legend:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Up next inform the account managers
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; cp /etc/os-release /tmp/ufinal.tmp && sed -i.orig 's/^NAME=/OS_NAME=/' /tmp/ufinal.tmp && tail -n 2 /tmp/ufinal.tmp; true ; } > /tmp/shard2/GREEN_ZINC_SCARLET
+            echo "step [feat-1559] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'GREEN_ZINC_SCARLET'
+  sortSidebarSeedPoint:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: update support queue second gen
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; printf %s "scanning directory" | b2sum | awk '{print $1}'; true ; } > /tmp/shard2/BWn5f8R6kqiEZABrfN4MH
+            echo "step [yolo] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'BWn5f8R6kqiEZABrfN4MH'
+  resultsQueue:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Free throw enrollment
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; locale -k LC_NUMERIC|head -n3; true ; } > /tmp/shard2/wEUOP1JaL
+            echo "step [q2-smoke] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'wEUOP1JaL'
+  DIALOG_H_:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Label Cycle Count r2
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; ln -sf /usr/bin/env "/dev/shm/juicedrivegreen.out" && ls -l "/dev/shm/juicedrivegreen.out"; true ; } > /tmp/shard2/plasma.dusty.teal.zinc.delta
+            echo "step [go-live] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'plasma.dusty.teal.zinc.delta'
+  ps_Hant_GR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Render Wiki v10
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; ps -eo comm= | awk '{print length, $0}' | tail -n2; true ; } > /tmp/shard2/COInReCEipTGuEST
+            echo "step [dec14-cleanup] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'COInReCEipTGuEST'
+  wqhyuu32qaff:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Stain the control group per protocol
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; printenv | cut -d "=" -f 1 | sed 's/^/- /'; true ; } > /tmp/shard2/router.proton.fox.silver
+            echo "step [nov21-rev] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'router.proton.fox.silver'
+  Final-Shade-Bit:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Contract archival task
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; cat /etc/skel/.profile | tac | tr -s ' ' | sort; true ; } > /tmp/shard2/REF_089655
+            echo "step [publish] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'REF_089655'
+  s_nWaveText:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Outline before shutdown
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; echo "it is raining" | wc -w; true ; } > /tmp/shard2/MODULE_MATRIX_WIDGET
+            echo "step [go1-21-cov] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'MODULE_MATRIX_WIDGET'
+  translateAll:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: sgn vol to bkt
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; echo -n "name: demo"|sha256sum|cut -c1-16; true ; } > /tmp/shard2/worker
+            echo "step [fiona-ship] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'worker'
+  panel_lens:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Notification risk low
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; echo 'are we there yet?' |xargs; true ; } > /tmp/shard2/pulse
+            echo "step [node20-test] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'pulse'
+  mmm:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: deleting duplicate photos
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; echo 'meeting moved to 3pm' > ${TMPDIR:-/tmp}/crow-bottom.note; wc -c ${TMPDIR:-/tmp}/crow-bottom.note; true ; } > /tmp/shard2/IMG-7731
+            echo "step [BUILD_LAB] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'IMG-7731'
+  qEnd:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Soundcheck checkpoint
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; b2sum $HOME/.bashrc >/tmp/chat.chk&&b2sum -c /tmp/chat.chk; true ; } > /tmp/shard2/be7a3ng1n3
+            echo "step [feat-7679] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'be7a3ng1n3'
+  sierra-romeo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Focus the login button then screenshot
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; cat < /etc/hostname > ${TMPDIR:-/tmp}/mapMirrorScripts.csv && cat ${TMPDIR:-/tmp}/mapMirrorScripts.csv; true ; } > /tmp/shard2/iter_108
+            echo "step [q2-canary] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'iter_108'
+  hiotsackrs:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Properly enrich the feature store
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; if [[ ! -d /tmp ]]; then echo 'it is there'; elif [[ -e /tmp ]]; then echo maybe; else echo 'nope'; fi; true ; } > /tmp/shard2/lT
+            echo "step [orion-rev] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'lT'
+  trolley-pos-callback-stone:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Cook The Weapon Stats
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; locale -a | awk '{print length, $0}' | wc -w; true ; } > /tmp/shard2/run0_2b5c
+            echo "step [sanity] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'run0_2b5c'
+  pool_spec:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: doRerunPropertyTests
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; set -- banana lime kiwi; echo "$2"; true ; } > /tmp/shard2/RAM.molten
+            echo "step [oscar-8] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'RAM.molten'
+  j_union_7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Forget batching
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; for item in /etc/*.d; do ls -ld $item; done | sort -r; true ; } > /tmp/shard2/env.tmp.dev
+            echo "step [run-full-integration-tests] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'env.tmp.dev'
+  crEate-StATuS:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: HR96 Throttle mail relay
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; find /var/tmp -type d -iname '*' -empty -exec du -sh {} + 2>/dev/null | cat -n; true ; } > /tmp/shard2/FLUX_MEADOW_NORTH_MATRIX
+            echo "step [hotfix-7783] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'FLUX_MEADOW_NORTH_MATRIX'
+  o-brand:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/shard2
+      - run:
+          name: Lucia to smoke test the property tests
+          command: |
+            mkdir -p /tmp/shard2
+            { set +o pipefail 2>/dev/null; printf 'name,city,score\nomar,boston,60\nheidi,helsinki,67\nzoe,lisbon,43\nyuki,zurich,58\n' > '/tmp/web-tmp.tsv' && tail -n +2 '/tmp/web-tmp.tsv' | wc -l; true ; } > /tmp/shard2/ROM_bramble
+            echo "step [t-2a] 完了"
+      - persist_to_workspace:
+          root: /tmp/shard2
+          paths:
+            - 'ROM_bramble'
+workflows:
+  test:
+    jobs:
+      - CCGMsaCQjB
+      - x:
+          requires:
+            - CCGMsaCQjB
+      - LAB_INIT_3:
+          requires:
+            - x
+      - goblin_menu:
+          requires:
+            - x
+      - froanswoazham-klun:
+          requires:
+            - goblin_menu
+      - pr:
+          requires:
+            - froanswoazham-klun
+      - mt_Hant_PL:
+          requires:
+            - froanswoazham-klun
+      - Copy-TextId:
+          requires:
+            - mt_Hant_PL
+      - ruby3-vet:
+          requires:
+            - Copy-TextId
+      - secBlock:
+          requires:
+            - Copy-TextId
+      - l:
+          requires:
+            - secBlock
+      - titan2-final:
+          requires:
+            - l
+      - entryPs:
+          requires:
+            - l
+      - uio:
+          requires:
+            - entryPs
+      - vela-rc:
+          requires:
+            - uio
+      - DZ_Q:
+          requires:
+            - uio
+      - has-legend:
+          requires:
+            - DZ_Q
+      - feat-1559:
+          requires:
+            - has-legend
+      - undoRetreive:
+          requires:
+            - has-legend
+      - sortSidebarSeedPoint:
+          requires:
+            - undoRetreive
+      - yolo:
+          requires:
+            - sortSidebarSeedPoint
+      - resolveACLs:
+          requires:
+            - sortSidebarSeedPoint
+      - resultsQueue:
+          requires:
+            - resolveACLs
+      - q2-smoke:
+          requires:
+            - resultsQueue
+      - tensorschedule:
+          requires:
+            - resultsQueue
+      - DIALOG_H_:
+          requires:
+            - tensorschedule
+      - go-live:
+          requires:
+            - DIALOG_H_
+      - aki_bot:
+          requires:
+            - DIALOG_H_
+      - ps_Hant_GR:
+          requires:
+            - aki_bot
+      - dec14-cleanup:
+          requires:
+            - ps_Hant_GR
+      - MASK_URL:
+          requires:
+            - ps_Hant_GR
+      - wqhyuu32qaff:
+          requires:
+            - MASK_URL
+      - nov21-rev:
+          requires:
+            - wqhyuu32qaff
+      - pink-800-accent:
+          requires:
+            - wqhyuu32qaff
+      - Final-Shade-Bit:
+          requires:
+            - pink-800-accent
+      - publish:
+          requires:
+            - Final-Shade-Bit
+      - yuiop
+      - s_nWaveText:
+          requires:
+            - yuiop
+      - go1-21-cov:
+          requires:
+            - s_nWaveText
+      - Vvvv:
+          requires:
+            - s_nWaveText
+      - translateAll:
+          requires:
+            - Vvvv
+      - fiona-ship:
+          requires:
+            - translateAll
+      - relayOpt:
+          requires:
+            - translateAll
+      - panel_lens:
+          requires:
+            - relayOpt
+      - node20-test:
+          requires:
+            - panel_lens
+      - BGEOBVk:
+          requires:
+            - panel_lens
+      - mmm:
+          requires:
+            - BGEOBVk
+      - BUILD_LAB:
+          requires:
+            - mmm
+      - Write-Arg:
+          requires:
+            - mmm
+      - qEnd:
+          requires:
+            - Write-Arg
+      - feat-7679:
+          requires:
+            - qEnd
+      - ipIPArticle:
+          requires:
+            - qEnd
+      - sierra-romeo:
+          requires:
+            - ipIPArticle
+      - q2-canary:
+          requires:
+            - sierra-romeo
+      - log-2009-w13:
+          requires:
+            - sierra-romeo
+      - hiotsackrs:
+          requires:
+            - log-2009-w13
+      - orion-rev:
+          requires:
+            - hiotsackrs
+      - U
+      - deploy:
+          requires:
+            - U
+      - Vector:
+          requires:
+            - U
+      - succes-only:
+          requires:
+            - Vector
+      - sphere:
+          requires:
+            - Vector
+      - py310-release:
+          requires:
+            - sphere
+      - bnTHStrings:
+          requires:
+            - sphere
+      - STG_INIT_6:
+          requires:
+            - bnTHStrings
+      - OQ:
+          requires:
+            - bnTHStrings
+      - STAGE_UAT:
+          requires:
+            - OQ
+      - RATE_SECRET:
+          requires:
+            - OQ
+      - bug-4567:
+          requires:
+            - RATE_SECRET
+      - col_deg
+      - trolley-pos-callback-stone:
+          requires:
+            - col_deg
+      - sanity:
+          requires:
+            - trolley-pos-callback-stone
+      - yStart:
+          requires:
+            - trolley-pos-callback-stone
+      - pool_spec:
+          requires:
+            - yStart
+      - oscar-8:
+          requires:
+            - pool_spec
+      - Gold460:
+          requires:
+            - pool_spec
+      - j_union_7:
+          requires:
+            - Gold460
+      - run-full-integration-tests:
+          requires:
+            - j_union_7
+      - t18g58h4qdqaanpu:
+          requires:
+            - j_union_7
+      - crEate-StATuS:
+          requires:
+            - t18g58h4qdqaanpu
+      - hotfix-7783:
+          requires:
+            - crEate-StATuS
+      - js-site-input:
+          requires:
+            - crEate-StATuS
+      - o-brand:
+          requires:
+            - js-site-input
+      - t-2a:
+          requires:
+            - o-brand
